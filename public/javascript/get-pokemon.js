@@ -2,15 +2,41 @@ const getInput = document.getElementById("name-id-input");
 
 const button = document.getElementById("search-btn");
 
-button.addEventListener("click",handleClick);
+const picture = document.getElementById("picture");
+
+const id = document.getElementById("id-container");
+
+const height = document.getElementById("height-container");
+
+const weight = document.getElementById("weight-container");
+
+const type = document.getElementById("type-container");
+
+const pokemon_name = document.getElementById("name-container");
+
+
+button.addEventListener("click", handleClick);
+
 
 function handleClick(event) {
     event.preventDefault();
     let searchValue = getInput.value;
     let url = "https://pokeapi.co/api/v2/pokemon/" + searchValue
     fetch(url)
-    .then(response => response.json())
-    .then(data => console.log(data));
+        .then(response => response.json())
+        .then(data => assignJson(data));
 }
 
-console.log(getInput.nodeValue);
+function assignJson(data) {
+
+    if (data.sprites.other["official-artwork"].front_default) {
+        picture.setAttribute("src", data.sprites.other["official-artwork"].front_default);
+    } else {
+        picture.setAttribute("src".data.sprites.front_default);
+    }
+    pokemon_name.innerText = data.name;
+    id.innerText = data.id;
+    height.innerText = data.height;
+    weight.innerText = data.weight;
+    type.innerText = data.types[0].type.name;
+}
