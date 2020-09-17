@@ -35,8 +35,8 @@ function assignJson(data) {
         picture.setAttribute("src".data.sprites.front_default);
     }
     pokemon_name.innerText = data.name;
-    id.innerText = data.id;
-    height.innerText = data.height;
-    weight.innerText = data.weight;
-    type.innerText = data.types[0].type.name;
+    id.innerText = "Id: " + data.id;
+    height.innerText = "Height: " + data.height;
+    weight.innerText = "Weight: " + data.weight;
+    type.innerText = "Type: " + data.types[0].type.name;
 }
